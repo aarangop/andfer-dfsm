@@ -2,9 +2,8 @@
 
 import PrimaryButton from "@/components/PrimaryButton";
 import { useProjectsListQuery } from "@/store/api/dfsmApi";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-export default withPageAuthRequired(function ProjectsRoot() {
+export default function ProjectsRoot() {
   const { data: projects, isSuccess, isError } = useProjectsListQuery();
   return (
     <main className="flex flex-col items-start p-4 justify-between w-full h-full">
@@ -43,4 +42,4 @@ export default withPageAuthRequired(function ProjectsRoot() {
       </div>
     </main>
   );
-});
+};

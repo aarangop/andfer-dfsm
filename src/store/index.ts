@@ -9,7 +9,7 @@ export const store = configureStore({
   },
   // Add api middleware to enable caching, invalidation, polling, etc.
   middleware(getDefaultMiddleware) {
-    return getDefaultMiddleware().concat([dfsmApi.middleware]);
+    return getDefaultMiddleware().concat(dfsmApi.middleware);
   },
 });
 
