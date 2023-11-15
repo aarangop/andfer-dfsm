@@ -1,15 +1,17 @@
-"use client";
-
 import PrimaryButton from "@/components/PrimaryButton";
-import { useProjectsListQuery } from "@/store/api/dfsmApi";
+import { getProjects } from "@/lib/api/projects";
 
-export default function ProjectsRoot() {
-  const { data: projects, isSuccess, isError } = useProjectsListQuery();
+export default async function ProjectsRoot() {
+  const response = await getProjects();
+  const error = response.error;
+  const projects = response.response;
+  console.log(error);
+
   return (
     <main className="flex flex-col items-start p-4 justify-between w-full h-full">
       <h2 className="text-xl font-semibold w-full mb-8">Projects</h2>
       <div className="grow w-full flex flex-col justify-start">
-        {isSuccess && (
+        {!error && (
           <table className="table-auto w-full">
             <thead>
               <tr>
@@ -31,15 +33,11 @@ export default function ProjectsRoot() {
             <tfoot></tfoot>
           </table>
         )}
-        {isError && (
-          <p className="text-center text-red-300">
-            There was an error retrieving the projects
-          </p>
-        )}
+        {error && <p className="text-center text-red-300">{error.detail}</p>}
       </div>
       <div>
         <PrimaryButton>New Project</PrimaryButton>
       </div>
     </main>
   );
-};
+}

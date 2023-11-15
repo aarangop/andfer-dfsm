@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
 import Providers from "@/components/Providers";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
