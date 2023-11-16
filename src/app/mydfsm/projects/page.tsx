@@ -1,11 +1,14 @@
 import PrimaryButton from "@/components/PrimaryButton";
-import { getProjects } from "@/lib/api/projects";
+import { getMessage } from "@/lib/api/projects";
 
 export default async function ProjectsRoot() {
-  const response = await getProjects();
-  const error = response.error;
-  const projects = response.response;
-  console.log(error);
+  // const response = await getProjects();
+  // const error = response.error;
+  // const projects = response.response;
+  const error = true;
+  const projects: Array<undefined> = [];
+  const apiMessage = await getMessage();
+  console.log(apiMessage);
 
   return (
     <main className="flex flex-col items-start p-4 justify-between w-full h-full">

@@ -15,7 +15,18 @@ export async function getProjects() {
   const token = await getAccessToken();
   return await GET("/api/projects/", {
     headers: {
-      Authentication: token ? `Bearer ${token.accessToken}` : "",
+      Authorization: token ? `Bearer ${token.accessToken}` : "",
     },
   });
+}
+
+export async function getMessage() {
+  const token = await getAccessToken();
+  console.log(token);
+  const res = await fetch("http://127.0.0.1:8000/api/private", {
+    headers: {
+      Authorization: token ? `Bearer ${token.accessToken}` : "",
+    },
+  });
+  return await res.json();
 }
